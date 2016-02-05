@@ -1,0 +1,46 @@
+          <!-- Block with answer -->
+          <div class="TP-answer">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="TP-left-qestion">
+                  <img src="{{item.author.avatar.url}}" class="img-rounded">
+                  <div class="TP-like">
+                  {% with likes_question.pop as likes %}
+                    <div class="TP-likes">
+                      {% if likes %}                  
+                        <span id="{{ item.id }}" class="like__button question_like {{ item.id }}">+</span>
+                      {% endif %}
+                    </div>
+                      <b>
+                        <div class="TP-likes {{ item.id }}">
+                           {{ item.rating }} 
+                        </div>
+                      </b>
+                    <div class="TP-likes">
+                      {% if likes %} 
+                        <span id="{{ item.id }}" class="like__button question_dislike {{ item.id }}">-</span>
+                      {% endif %}
+                    </div>
+                    {% endwith %}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="TP-question">
+                  <a href="{% url 'question' item.id  %}">{{item.title}}</a>
+                  <p> 
+                     {{item.text_qest}} </p> 
+                  <div class="TP-under">
+                    <a href="{% url 'question' item.id  %}"> Ответы ({{item.count_ans}}) </a>
+                    <div class="TP-tags">
+                      Теги: 
+                      {% for tag in item.tags.all%}
+                        <a href="{% url 'tag' tag.name %}" class="tags"> {{tag.name}} </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End block with answer -->

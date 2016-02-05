@@ -1,0 +1,12 @@
+{% extends "ask/two_column.html" %}
+{% block first_column %}
+          <div class="TP-page-header"><h3> Все вопросы по тэгу: {{tag_name}} </h3></div>
+          {% if questions %}
+            {% for item in questions%}
+              {% include "ask/question.html" %} 
+            {% endfor %}
+              {% include "ask/paginator.html" %} 
+          {% else %}
+            По данному тегу {{tag_name}}, ничего не найдено(((
+          {% endif %}
+{% endblock %} 

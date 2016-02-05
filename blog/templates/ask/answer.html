@@ -1,0 +1,21 @@
+{% extends "ask/two_column.html" %}
+{% block first_column %}
+          <div class="TP-ans">
+            {% include "ask/question.html" %}
+          </div>
+          {% if answers %}
+            {% for item in answers%}
+                {% include "ask/one_answer.html" %} 
+            {% endfor %}
+          {% else %}
+            По данному вопросу пока нет ответов
+          {% endif %}
+          <div class="TP-write-answer">
+            <form role="form" action="{% url 'create_answer' %}" method="POST" id="post-form">
+              {% csrf_token %}
+              <input name="question_id" type="hidden" value="{{ item.id }}">
+              <textarea class="form-control" name="text" rows="3">Комментарий к идее</textarea>
+              <button type="submit" class="btn btn-default">Ответить</button>
+            </form>
+          </div>
+{% endblock %} 
